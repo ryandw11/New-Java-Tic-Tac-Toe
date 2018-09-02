@@ -14,9 +14,6 @@ import me.ryandw11.tictactoe.util.TicMode;
 
 public class TitleScreen extends JFrame implements ActionListener {
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private JButton singleButton, multiButton;
 	

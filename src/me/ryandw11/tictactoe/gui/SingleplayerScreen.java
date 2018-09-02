@@ -12,10 +12,6 @@ import me.ryandw11.tictactoe.ai.SingleplayerAI;
 
 public class SingleplayerScreen extends JFrame implements ActionListener {
 	
-	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	
@@ -64,19 +60,9 @@ public class SingleplayerScreen extends JFrame implements ActionListener {
 		
 	}
 	
-	public void updateScreen() {
-		panel.removeAll();
-		panel.add(sai.a1);
-		panel.add(sai.a2);
-		panel.add(sai.a3);
-		panel.add(sai.b1);
-		panel.add(sai.b2);
-		panel.add(sai.b3);
-		panel.add(sai.c1);
-		panel.add(sai.c2);
-		panel.add(sai.c3);
-	}
-	
+	/**
+	 * Easy way to kill the screen from outside.
+	 */
 	public void killScreen() {
 		this.dispose();
 	}

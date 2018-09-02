@@ -72,9 +72,5 @@ public class TicTacToe {
 		}
 		
 	}
-	
-	public void comWin() {
-		
-	}
 
 }
