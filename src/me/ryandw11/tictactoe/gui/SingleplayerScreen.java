@@ -28,7 +28,7 @@ public class SingleplayerScreen extends JFrame implements ActionListener {
 		this.guiConstructor();
 		
 		this.setVisible(true);
-		this.setLocation(800, 300);
+		this.setLocation(700, 200);
 		
 	}
 	

@@ -320,7 +320,7 @@ public class SingleplayerAI {
 				board[7] = "O";
 			}
 			else if(num == 8 && c3.getText().equals(" ")) {
-				c1.setText("O");
+				c3.setText("O");
 				board[8] = "O";
 			}
 		}
