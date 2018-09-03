@@ -4,17 +4,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import me.ryandw11.tictactoe.ai.MultiplayerAI;
-import me.ryandw11.tictactoe.ai.SingleplayerAI;
+import me.ryandw11.tictactoe.ai.singleplayer.SingleplayerAIHard;
 import me.ryandw11.tictactoe.gui.MultiplayerScreen;
 import me.ryandw11.tictactoe.gui.SingleplayerScreen;
 import me.ryandw11.tictactoe.gui.TitleScreen;
+import me.ryandw11.tictactoe.util.Singleplayer;
 import me.ryandw11.tictactoe.util.TicMode;
 
 public class TicTacToe {
 	
 	public static TicMode mode;
 	
-	public static SingleplayerAI sai;
+	public static Singleplayer sai;
 	public static MultiplayerAI mai;
 	
 	public static SingleplayerScreen singleInstance;
@@ -25,7 +26,7 @@ public class TicTacToe {
 	}
 
 	public static void main(String[] args) {
-		sai = new SingleplayerAI();
+		sai = new SingleplayerAIHard();
 		mai = new MultiplayerAI();
 		
 		TitleScreen ts = new TitleScreen();
@@ -35,10 +36,15 @@ public class TicTacToe {
 			@SuppressWarnings("unused")
 			String s = "" + mode; //No clue why this is needed. Ask java why.
 				if(mode == TicMode.SinglePlayer) {
-					if(!sai.myTurn) {
+					if(!sai.getMyTurn()) {
+						try {
+							Thread.sleep(150);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
 						sai.computerMove();
 						singleInstance.panel.updateUI();
-						sai.myTurn = true;
+						sai.setMyTurn(true);
 						sai.checkWin();
 					}
 					
@@ -48,29 +54,29 @@ public class TicTacToe {
 						TitleScreen tsa = new TitleScreen();
 						tsa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 						sai.reset();
-						singleInstance.killScreen();
+						singleInstance.dispose();
 						singleInstance = null;
-						sai = new SingleplayerAI();
+						sai = new SingleplayerAIHard();
 					}
 					else if(sai.getPlayerWin()) {
 						JOptionPane.showMessageDialog(null, "The Player Wins", "Winner", JOptionPane.QUESTION_MESSAGE);
 						mode = null;
 						TitleScreen tsa = new TitleScreen();
 						tsa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						singleInstance.killScreen();
+						singleInstance.dispose();
 						sai.reset();
 						singleInstance = null;
-						sai = new SingleplayerAI();
+						sai = new SingleplayerAIHard();
 					}
 					else if(sai.getTie()) {
 						JOptionPane.showMessageDialog(null, "It's a tie game!", "Tie", JOptionPane.WARNING_MESSAGE);
 						mode = null;
 						TitleScreen tsa = new TitleScreen();
 						tsa.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-						singleInstance.killScreen();
+						singleInstance.dispose();
 						sai.reset();
 						singleInstance = null;
-						sai = new SingleplayerAI();
+						sai = new SingleplayerAIHard();
 					}
 					
 					

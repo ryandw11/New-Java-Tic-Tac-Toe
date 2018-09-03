@@ -1,5 +1,7 @@
 package me.ryandw11.tictactoe.ai;
 
+import java.awt.Font;
+
 import javax.swing.JButton;
 
 public class MultiplayerAI {
@@ -28,6 +30,16 @@ public class MultiplayerAI {
 		c1 = new JButton(board[6]);
 		c2 = new JButton(board[7]);
 		c3 = new JButton(board[8]);
+		
+		a1.setFont(new Font("Arial", Font.PLAIN, 80));
+		a2.setFont(new Font("Arial", Font.PLAIN, 80));
+		a3.setFont(new Font("Arial", Font.PLAIN, 80));
+		b1.setFont(new Font("Arial", Font.PLAIN, 80));
+		b2.setFont(new Font("Arial", Font.PLAIN, 80));
+		b3.setFont(new Font("Arial", Font.PLAIN, 80));
+		c1.setFont(new Font("Arial", Font.PLAIN, 80));
+		c2.setFont(new Font("Arial", Font.PLAIN, 80));
+		c3.setFont(new Font("Arial", Font.PLAIN, 80));
 	}
 	
 	public void nextTurn() {

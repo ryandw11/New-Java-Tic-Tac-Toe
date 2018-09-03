@@ -22,10 +22,10 @@ import me.ryandw11.tictactoe.util.TicMode;
 public class TitleScreen extends JFrame implements ActionListener {
 	
 	private static final long serialVersionUID = 1L;
-	private JButton singleButton, multiButton;
+	private JButton singleButton, multiButton, exitButton;
 	
 	public TitleScreen() {
-		super("Tic-Tac-Toe");
+		super("Tic-Tac-Toe | Developed by: Ryandw11");
 		this.setSize(400, 300);
 		
 		this.constructGui();
@@ -51,6 +51,7 @@ public class TitleScreen extends JFrame implements ActionListener {
 		
 		singleButton = new JButton("Singleplayer");
 		multiButton = new JButton("Multiplayer");
+		exitButton = new JButton("Exit Game");
 		
 		panel.add(title);
 		//panel.add(singleButton);
@@ -59,10 +60,12 @@ public class TitleScreen extends JFrame implements ActionListener {
 		panel.setBackground(Color.LIGHT_GRAY);
 		
 		buttonPane.setLayout(new BoxLayout(buttonPane, BoxLayout.LINE_AXIS));
-		buttonPane.add(Box.createRigidArea(new Dimension(90, 0)));
+		buttonPane.add(Box.createRigidArea(new Dimension(40, 0)));
 		buttonPane.add(singleButton);
 		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
 		buttonPane.add(multiButton);
+		buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+		buttonPane.add(exitButton);
 		buttonPane.setBackground(Color.LIGHT_GRAY);
 		
 		Container contentPane = getContentPane();
@@ -70,10 +73,9 @@ public class TitleScreen extends JFrame implements ActionListener {
 		contentPane.add(buttonPane, BorderLayout.SOUTH);
 		contentPane.setBackground(Color.LIGHT_GRAY);
 		
-		//this.add(panel);
-		
 		singleButton.addActionListener(this);
 		multiButton.addActionListener(this);
+		exitButton.addActionListener(this);
 		
 	}
 
@@ -81,12 +83,9 @@ public class TitleScreen extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == singleButton) {
-			TicTacToe ttt = new TicTacToe();
-			ttt.mode = TicMode.SinglePlayer;
+			SingleplayerSelectionScreen sss = new SingleplayerSelectionScreen();
+			sss.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			this.dispose();
-			ttt.singleInstance = new SingleplayerScreen();
-			ttt.singleInstance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			JOptionPane.showMessageDialog(null, "Welcome to singleplayer! Click a box to add an X. The computer will automaticly go.", "Welcome", JOptionPane.PLAIN_MESSAGE);
 		}
 		else if(e.getSource() == multiButton){
 			TicTacToe.mode = TicMode.MultiPlayer;
@@ -96,6 +95,18 @@ public class TitleScreen extends JFrame implements ActionListener {
 			ttt.multiInstance = new MultiplayerScreen();
 			ttt.multiInstance.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 			JOptionPane.showMessageDialog(null, "Welcome to multiplayer! Player One is X and Player Two is O. Player One goes first.", "Welcome", JOptionPane.PLAIN_MESSAGE);
+		}
+		else if(e.getSource() == exitButton) {
+			Object[] s = {"Yes", "No"};
+			int n = JOptionPane.showOptionDialog(new JFrame(), "Would you really like to exit the game?", "Exit Game", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, s, s[0]);
+			if(n == JOptionPane.OK_OPTION) {
+				JOptionPane.showMessageDialog(null, "Thanks for playing!", "Thanks!", JOptionPane.INFORMATION_MESSAGE);
+				System.exit(0);
+			}
+			if(n == JOptionPane.NO_OPTION) {
+				JOptionPane.showMessageDialog(null, "You can continue playing!", "Tic-Tac-Toe", JOptionPane.INFORMATION_MESSAGE);
+			}
+			
 		}
 		
 	}
